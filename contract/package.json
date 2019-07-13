@@ -1,0 +1,19 @@
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ganache": "ganache-cli -m 'farm unique ranch elevator film earth beach enable aware allow gather clay'",
+    "remix": "remix-ide",
+    "dev": "npm run ganache & npm run remix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ganache-cli": "^6.4.4",
+    "remix-ide": "^0.8.5"
+  }
+}
