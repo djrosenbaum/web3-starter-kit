@@ -20,3 +20,6 @@ Terminal Window 2
 3. npm install
 4. npm run dev
 5. open http://localhost:8081/ in a browser to begin client development
+
+## Web3 Starter Kit /docs
+[Web3 Starter Kit](https://djrosenbaum.github.io/web3-starter-kit/)

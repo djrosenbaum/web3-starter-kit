@@ -22,8 +22,9 @@ async function get() {
 }
 
 function set() {
-  const value = parseInt(document.getElementById('set_value').value, 10);
-  const data = window.dapp.contracts.simpleStorage.contract.methods.set(value).encodeABI();
+  let inputValue = document.getElementById('set_value').value;
+  inputValue = parseInt(inputValue, 10);
+  const data = window.dapp.contracts.simpleStorage.contract.methods.set(inputValue).encodeABI();
 
   sendTransaction(data);
 }
