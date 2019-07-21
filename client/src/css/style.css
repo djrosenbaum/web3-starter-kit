@@ -1,0 +1,91 @@
+body {
+  font-family: 'Roboto Slab', serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.section {
+  background-color: #3f3f3f;
+  height: 100vh;
+  position: relative;
+}
+
+.splash {
+  background: #1db954;
+}
+
+.splash .outer-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  text-align: center;
+}
+
+.splash .inner-wrapper {
+  display: inline-block;
+}
+
+.splash h1 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+  padding-left: 10px;
+}
+
+.splash h2 {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 20px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #3f3f3f;
+}
+
+.splash h3 {
+  padding-top: 100px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.splash h3 span {
+  color: #fff;
+  font-weight: 200;
+  padding-left: 10px;
+}
+
+.splash img {
+  display: none;
+  width: 200px;
+}
+
+.splash button {
+  display: inline;
+  background: none;
+  border-radius: 8px;
+  color: #333;
+  border-color: #333;
+  padding: 6px 20px;
+  font-size: 16px;
+  font-weight: 200;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.splash input {
+  background: none;
+  color: #333;
+  border-color: #333;
+  font-size: 16px;
+  font-weight: 200;
+  border-width: 1px;
+  padding: 4px;
+}
+
+.splash .field {
+  margin-top: 10px;
+}
