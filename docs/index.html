@@ -16,7 +16,7 @@
   <style>
     .instruction {
       background-color: #fff;
-      border-left: 10px solid #1db954;
+      border: 1px solid #ddd;
       border-radius: 6px;
       color: #222;
       margin: 0 auto;
@@ -24,18 +24,35 @@
       padding: 40px;
       font-size: 18px;
       width: 980px;
+      text-align: center;
+      position: relative;
     }
 
     .instruction h2 {
       font-size: 30px;
       font-weight: 300;
-      text-align: center;
     }
 
     .instruction h3 {
       font-size: 18px;
       font-weight: 100;
       margin: 30px 0;
+    }
+
+    .instruction .step:before {
+      background-color: #1db954;
+      border-radius: 32px;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      counter-increment: step;
+      content: counter(step);
+      color: #fff;
+      font-size: 18px;
+      line-height: 48px;
+      font-weight: 700;
     }
 
     pre {
@@ -69,6 +86,7 @@
       <h2>Clone the repository</h2>
       <h3>Go to the folder where you want to store your project, and clone the repository</h3>
       <pre>git clone git@github.com:djrosenbaum/web3-starter-kit.git</pre>
+      <div class="step"></div>
     </div>
   </div>
 </body>
