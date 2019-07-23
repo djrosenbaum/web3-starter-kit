@@ -8,127 +8,46 @@
   <title>Web3 Starter Kit</title>
   <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="stylesheet" href="./reset.css" type="text/css">
+  <link rel="stylesheet" href="./style.css" type="text/css">
+  <link rel="stylesheet" href="./splash.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    i {
-      border: solid #333;
-      border-width: 0 3px 3px 0;
-      display: inline-block;
-      padding: 3px;
-      margin-left: 10px;
-    }
-
-    .down {
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-    }
-
-    .section {
-      background-color: #3f3f3f;
-      height: 100vh;
+    .instruction {
+      background-color: #fff;
+      color: #222;
+      margin: 0 auto;
+      margin-top: 50px;
       position: relative;
-    }
-
-    .splash {
-      background: #1db954;
-    }
-
-    .splash .outer-wrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90vw;
+      padding: 40px 0 60px;
+      font-size: 18px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
       text-align: center;
+      width: 980px;
     }
 
-    .splash .inner-wrapper {
-      margin-top: 75px;
-      display: inline-block;
-    }
-
-    .splash .cta-scroll {
-      position: absolute;
-      bottom: 50px;
-      text-align: center;
-      width: 100%;
-    }
-
-    .splash h1 {
-      color: #fff;
-      font-weight: 700;
-      font-family: 'Roboto Slab', serif;
-      font-size: 70px;
-      position: relative;
-      text-align: left;
-    }
-
-    .splash h1 span {
-      color: #fff;
-      font-size: 40px;
+    .instruction h2 {
+      font-size: 30px;
       font-weight: 300;
-      padding-left: 10px;
     }
 
-    .splash h2 {
-      padding-top: 20px;
-      padding-bottom: 100px;
-      font-size: 24px;
-      letter-spacing: 1px;
-      color: #3f3f3f;
+    .instruction h3 {
+      font-size: 18px;
+      font-weight: 100;
+      margin: 30px 0;
     }
 
-    .splash h3 {
-      color: #333;
-      font-size: 13px;
+    pre {
+      font-family: monospace;
+      white-space: pre;
+      background-color: #222;
+      margin: 0 30px;
+      padding: 30px;
+      border-radius: 6px;
+      color: #1db954;
       font-weight: 700;
-      text-align: center;
-    }
-
-    .splash img {
-      width: 200px;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-
-    .splash button {
-      display: inline;
-      background: none;
-      border-radius: 8px;
-      color: #333;
-      border-color: #333;
-      padding: 6px 20px;
-      font-size: 16px;
-      font-weight: 200;
-      cursor: pointer;
-    }
-
-    @media only screen and (max-width: 600px) {
-      .splash h1 {
-        font-size: 21px;
-      }
-
-      .splash h1 span {
-        font-size: 21px;
-      }
-
-      .splash img {
-        width: 100px;
-      }
-
-      .splash h2 {
-        font-size: 16px;
-      }
     }
   </style>
 </head>
@@ -148,11 +67,11 @@
     </div>
   </div>
   <div class="section">
-    <div>TODO: Onboarding Instructions</div>
-    <div>git clone</div>
-    <div>nvm use</div>
-    <div>npm install</div>
-    <div>npm run dev</div>
+    <div class="instruction">
+      <h2>Clone the repository</h2>
+      <h3>Go to the folder where you want to store your project, and clone the repository</h3>
+      <pre>git clone git@github.com:djrosenbaum/web3-starter-kit.git</pre>
+    </div>
   </div>
 </body>
 

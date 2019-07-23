@@ -1,0 +1,27 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+i {
+  border: solid #333;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 10px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.section {
+  background-color: #3f3f3f;
+  height: 100vh;
+  overflow: auto;
+  position: relative;
+}

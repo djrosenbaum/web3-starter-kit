@@ -1,0 +1,92 @@
+.splash {
+  background: #1db954;
+}
+
+.splash .outer-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  text-align: center;
+}
+
+.splash .inner-wrapper {
+  margin-top: 75px;
+  display: inline-block;
+}
+
+.splash .cta-scroll {
+  position: absolute;
+  bottom: 50px;
+  text-align: center;
+  width: 100%;
+}
+
+.splash h1 {
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Roboto Slab', serif;
+  font-size: 70px;
+  position: relative;
+  text-align: left;
+}
+
+.splash h1 span {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+  padding-left: 10px;
+}
+
+.splash h2 {
+  padding-top: 20px;
+  padding-bottom: 100px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #3f3f3f;
+}
+
+.splash h3 {
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.splash img {
+  width: 200px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.splash button {
+  display: inline;
+  background: none;
+  border-radius: 8px;
+  color: #333;
+  border-color: #333;
+  padding: 6px 20px;
+  font-size: 16px;
+  font-weight: 200;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .splash h1 {
+    font-size: 21px;
+  }
+
+  .splash h1 span {
+    font-size: 21px;
+  }
+
+  .splash img {
+    width: 100px;
+  }
+
+  .splash h2 {
+    font-size: 16px;
+  }
+}
