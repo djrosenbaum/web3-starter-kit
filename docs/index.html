@@ -28,6 +28,12 @@
       position: relative;
     }
 
+    .instruction>div {
+      border: 1px dotted #333;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
     .instruction h2 {
       font-size: 30px;
       font-weight: 300;
@@ -39,7 +45,7 @@
       margin: 30px 0;
     }
 
-    .instruction .step:before {
+    .instruction:before {
       background-color: #1db954;
       border-radius: 32px;
       width: 50px;
@@ -59,10 +65,8 @@
       font-family: monospace;
       white-space: pre;
       padding: 30px;
-      border-radius: 6px;
       color: #000;
       font-weight: 700;
-      border: 1px dotted #333;
     }
   </style>
 </head>
@@ -84,9 +88,31 @@
   <div class="section">
     <div class="instruction">
       <h2>Clone the repository</h2>
-      <h3>Go to the folder where you want to store your project, and clone the repository</h3>
-      <pre>git clone git@github.com:djrosenbaum/web3-starter-kit.git</pre>
-      <div class="step"></div>
+      <div>
+        <h3>Go to the folder where you want to store your project, and clone the repository</h3>
+        <pre>git clone git@github.com:djrosenbaum/web3-starter-kit.git</pre>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="instruction">
+      <h2>Start a local ethereum network</h2>
+      <div>
+        <h3>Go to the contracts directory</h3>
+        <pre>cd web3-starter-kit/contracts</pre>
+      </div>
+      <div>
+        <h3>Select a compatible version of node</h3>
+        <pre>nvm use</pre>
+      </div>
+      <div>
+        <h3>Install ganache-cli and remix-ide</h3>
+        <pre>npm install</pre>
+      </div>
+      <div>
+        <h3>Start the network</h3>
+        <pre>npm run dev</pre>
+      </div>
     </div>
   </div>
 </body>
