@@ -1,0 +1,78 @@
+.instruction {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #222;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 40px;
+  font-size: 18px;
+  width: 980px;
+  text-align: center;
+  position: relative;
+}
+
+.instruction>div {
+  border: 1px dotted #333;
+  border-radius: 6px;
+  margin-top: 20px;
+  overflow: auto;
+}
+
+.instruction h2 {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.instruction h3 {
+  font-size: 18px;
+  font-weight: 100;
+  margin: 30px 0;
+}
+
+.instruction:before {
+  background-color: #1db954;
+  border-radius: 32px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  counter-increment: step;
+  content: counter(step);
+  color: #fff;
+  font-size: 18px;
+  line-height: 48px;
+  font-weight: 700;
+}
+
+pre {
+  font-family: monospace;
+  white-space: pre;
+  padding: 30px;
+  color: #000;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  .section .instruction {
+    width: 275px;
+  }
+
+  .instruction:before {
+    top: -30px;
+    left: 0px;
+  }
+
+/* .section .instruction span {
+font-size: 21px;
+}
+
+.section .instructiong {
+width: 100px;
+}
+
+.section .instruction {
+font-size: 16px;
+} */
+}
