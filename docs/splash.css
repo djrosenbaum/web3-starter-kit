@@ -1,5 +1,8 @@
 .splash {
   background: #1db954;
+  min-height: 100vh;
+  overflow: auto;
+  position: relative;
 }
 
 .splash .outer-wrapper {
