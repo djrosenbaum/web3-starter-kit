@@ -7,6 +7,13 @@ export default function setupDOM() {
 function displayMarkup() {
   console.log('markup');
   document.getElementById('network_status').innerHTML = window.dapp.connected ? 'connected' : 'not connected';
+  document.getElementById('contract_status').innerHTML = window.dapp.contracts.simpleStorage.isConnected ? 'connected' : 'not connected';
+
+  // Contract not deployed
+  if (!window.dapp.contracts.simpleStorage.isConnected) {
+    console.log('Contract not deployed');
+    return;
+  }
   get();
 }
 
