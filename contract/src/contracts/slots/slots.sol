@@ -20,11 +20,17 @@ contract Slots {
         uint256 _slot3
     );
 
+    // Emit event when a new player name is created
+    event OnPlayerName(
+        address indexed _playerAddress,
+        bytes32 _playerName
+    );
+
     // Cost to play
-    uint256 public cost;
+    uint256 public costToPlay;
 
     // Cost to set player name
-    uint256 public vanityCost;
+    uint256 public costToSetPlayerName;
 
     // Cost to become an affiliate
     uint256 public affiliateCost;
@@ -38,32 +44,109 @@ contract Slots {
     // Playerbook
     mapping (address => bytes32) playerBook;
 
+    // Contract Owner
     address payable private owner;
 
-    // Ether sent directly to the contract
+    // ETH sent directly to the contract
     function ()
         external
         payable
     {}
 
-    constructor(uint256 _cost, uint256 _vanityCost, uint256 _affiliateCost, uint256 _ownershipCost)
+    constructor(uint256 _costToPlay, uint256 _costToSetPlayerName, uint256 _affiliateCost, uint256 _ownershipCost)
         public
     {
         owner = msg.sender;
-        cost = _cost;
-        vanityCost = _vanityCost;
+        costToPlay = _costToPlay;
+        costToSetPlayerName = _costToSetPlayerName;
         affiliateCost = _affiliateCost;
         ownershipCost = _ownershipCost;
     }
 
-    function transferOwnership(address payable newOwner)
+    function createAffiliate()
         public
+        payable
     {
-        if (msg.sender == owner) {
-            owner = newOwner;
+        // Attempt to prevent contracts from interacting
+        require(msg.sender == tx.origin, "Sender not authorized");
+
+        affiliates[msg.sender] = true;
+    }
+
+    function setPlayerName(string memory playerName)
+        public
+        payable
+    {
+        // Require minimum amount sent
+        require(msg.value >= costToSetPlayerName, "Amount sent too low");
+
+        // Check if vanity name is valid
+        require(Helpers.isValidPlayerName(playerName) == true, "Invalid player name");
+
+        // Convert to bytes32 for smaller storage
+        bytes32 vanity32;
+        assembly {
+            vanity32 := mload(add(playerName, 32))
+        }
+
+        playerBook[msg.sender] = vanity32;
+
+        emit OnPlayerName(msg.sender, vanity32);
+    }
+
+    // Get the Player name by address
+    function getPlayerName(address playerAddress)
+        public
+        view
+        returns(bytes32 playerName)
+    {
+        return playerBook[playerAddress];
+    }
+
+    function spin(address payable affiliateAddress)
+        public
+        payable
+    {
+        require(msg.sender == tx.origin, "Sender not authorized");
+
+        require(msg.value >= costToPlay, "Amount sent too low");
+
+        uint256 spins = msg.value / costToPlay;
+        uint256 totalWon;
+        uint256 seed;
+
+        while(spins > 0) {
+            uint256 slot1 = Helpers.getRandom(10, seed);
+            uint256 slot2 = Helpers.getRandom(10, seed + 1);
+            uint256 slot3 = Helpers.getRandom(10, seed + 2);
+
+            if (slot1 == slot2 && slot2 == slot3) {
+                uint256 amount = costToPlay * 50;
+                totalWon = totalWon + amount;
+                emit OnSpin(msg.sender, 'jackpot', costToPlay, amount, slot1, slot2, slot3);
+            }
+            else if (slot1 == slot2 || slot1 == slot3 || slot2 == slot3) {
+                uint256 amount = costToPlay * 2;
+                totalWon = totalWon + amount;
+                emit OnSpin(msg.sender, 'win', costToPlay, amount, slot1, slot2, slot3);
+            } else {
+                emit OnSpin(msg.sender, 'lose', costToPlay, 0, slot1, slot2, slot3);
+            }
+
+            spins = spins - 1;
+            seed = seed + 3;
+        }
+
+        if (totalWon > 0) {
+            msg.sender.transfer(totalWon);
+        }
+
+        if (affiliates[affiliateAddress]) {
+            affiliateAddress.transfer(msg.value / 10);
         }
     }
 
+    // ==== CONTRACT OWNERSHIP ==== //
     function takeOwnership()
         public
         payable
@@ -75,11 +158,19 @@ contract Slots {
         owner = msg.sender;
     }
 
-    function setCost(uint256 newCost)
+    function transferOwnership(address payable newOwner)
         public
     {
         if (msg.sender == owner) {
-            cost = newCost;
+            owner = newOwner;
+        }
+    }
+
+    function setCostToPlay(uint256 newCostToPlay)
+        public
+    {
+        if (msg.sender == owner) {
+            costToPlay = newCostToPlay;
         }
     }
 
@@ -91,88 +182,11 @@ contract Slots {
         }
     }
 
-    function withdraw(uint256 amount)
+    function withdrawAsOwner(uint256 amount)
         public
     {
         if (msg.sender == owner) {
             address(owner).transfer(amount);
-        }
-    }
-
-    function setAffiliate()
-        public
-        payable
-    {
-        // Attempt to prevent contracts from interacting
-        require(msg.sender == tx.origin, "Sender not authorized");
-
-        affiliates[msg.sender] = true;
-    }
-
-    function setPlayerName(string memory vanityName)
-        public
-        payable
-    {
-        // Require minimum amount sent
-        require(msg.value >= vanityCost, "Amount sent too low");
-
-        // Check if vanity name is valid
-        require(Helpers.isValidVanityName(vanityName) == true, "Invalid vanity name");
-
-        // Convert to bytes32 for smaller storage
-        bytes32 vanity32;
-        assembly {
-            vanity32 := mload(add(vanityName, 32))
-        }
-
-        playerBook[msg.sender] = vanity32;
-
-        // emit OnVanity(msg.sender, vanity32);
-    }
-
-    function spin(address payable affiliateAddress)
-        public
-        payable
-    {
-        // Attempt to prevent contracts from interacting
-        require(msg.sender == tx.origin, "Sender not authorized");
-
-        require(msg.value >= cost, "Amount sent too low");
-
-        uint256 spins = msg.value / cost;
-        uint256 totalWon;
-        uint256 seed;
-
-        while(spins > 0) {
-            uint256 slot1 = Helpers.getRandom(10, seed);
-            uint256 slot2 = Helpers.getRandom(10, seed + 1);
-            uint256 slot3 = Helpers.getRandom(10, seed + 2);
-
-            if (slot1 == slot2 && slot2 == slot3) {
-                uint256 amount = cost * 50;
-                totalWon = totalWon + amount;
-                emit OnSpin(msg.sender, 'jackpot', cost, amount, slot1, slot2, slot3);
-            }
-            else if (slot1 == slot2 || slot1 == slot3 || slot2 == slot3) {
-                uint256 amount = cost * 2;
-                totalWon = totalWon + amount;
-                emit OnSpin(msg.sender, 'win', cost, amount, slot1, slot2, slot3);
-            } else {
-                emit OnSpin(msg.sender, 'lose', cost, 0, slot1, slot2, slot3);
-            }
-
-            spins = spins - 1;
-            if (spins > 0) {
-                seed = seed + 3;
-            }
-        }
-
-        if (totalWon > 0) {
-            msg.sender.transfer(totalWon);
-        }
-
-        if (affiliates[affiliateAddress]) {
-            affiliateAddress.transfer(msg.value / 10);
         }
     }
 }
@@ -199,7 +213,7 @@ library Helpers {
     }
 
     // Checks if vanity name is valid
-    function isValidVanityName(string memory vanityString)
+    function isValidPlayerName(string memory vanityString)
         internal
         pure
         returns (bool)
