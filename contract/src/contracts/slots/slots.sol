@@ -10,10 +10,10 @@ pragma solidity 0.5.10;
 */
 
 contract Slots {
+    // Emit event for each spin
     event OnSpin(
         address indexed _player,
         bytes32 indexed _status,
-        uint256 _cost,
         uint256 _amountWon,
         uint256 _slot1,
         uint256 _slot2,
@@ -37,15 +37,15 @@ contract Slots {
 
     // Cost to take ownership
     uint256 public ownershipCost;
+    
+    // Contract Owner
+    address payable public owner;
 
     // Affiliates
     mapping (address => bool) affiliates;
 
     // Playerbook
     mapping (address => bytes32) playerBook;
-
-    // Contract Owner
-    address payable private owner;
 
     // ETH sent directly to the contract
     function ()
@@ -123,14 +123,14 @@ contract Slots {
             if (slot1 == slot2 && slot2 == slot3) {
                 uint256 amount = costToPlay * 50;
                 totalWon = totalWon + amount;
-                emit OnSpin(msg.sender, 'jackpot', costToPlay, amount, slot1, slot2, slot3);
+                emit OnSpin(msg.sender, 'jackpot', amount, slot1, slot2, slot3);
             }
             else if (slot1 == slot2 || slot1 == slot3 || slot2 == slot3) {
                 uint256 amount = costToPlay * 2;
                 totalWon = totalWon + amount;
-                emit OnSpin(msg.sender, 'win', costToPlay, amount, slot1, slot2, slot3);
+                emit OnSpin(msg.sender, 'win', amount, slot1, slot2, slot3);
             } else {
-                emit OnSpin(msg.sender, 'lose', costToPlay, 0, slot1, slot2, slot3);
+                emit OnSpin(msg.sender, 'lose', 0, slot1, slot2, slot3);
             }
 
             spins = spins - 1;
