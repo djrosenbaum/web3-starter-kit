@@ -1,4 +1,5 @@
 body {
+  background-color: #111;
   font-family: 'Roboto Slab', serif;
 }
 
@@ -6,22 +7,45 @@ a {
   text-decoration: none;
 }
 
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table thead {
+  color: #fff;
+  font-weight: 100;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+table td {
+  padding: 10px;
+}
+
+.header {
+  background-color: #1a1c24;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.container {
+  background-color: #383949;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 30px;
+  width: 800px;
+}
+
 .section {
   background-color: #3f3f3f;
-  height: 100vh;
   position: relative;
 }
 
-.splash {
-  background: #1db954;
-}
-
-.splash .outer-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
+.outer-wrapper {
   text-align: center;
 }
 
@@ -88,4 +112,8 @@ a {
 
 .splash .field {
   margin-top: 10px;
+}
+
+.spacer_50 {
+  height: 50px;
 }

@@ -1,17 +1,46 @@
-<div class="section splash">
-  <div class="outer-wrapper">
-    <div class="inner-wrapper">
-      <h1>Hello dApp</h1>
-      <h2>Built in a snap, wasn't that easy?</h2>
-      <h3>network status:<span id="network_status"></span></h3>
-      <h3>contract status:<span id="contract_status"></span></h3>
-      <div class="field">
-        <button id="get">Get</button><input id="get_value" type="text">
+<div class="header"></div>
+<div class="game-wrapper">
+  <div class="container">
+    <div class="slots">
+      <div class="slot">
+        <!--=include ../svg/ethereum-logo.svg -->
       </div>
-      <div class="field">
-        <button id="set">Set</button><input id="set_value" type="text">
+      <div class="slot">
+        <!--=include ../svg/ethereum-logo.svg -->
       </div>
+      <div class="slot">
+        <!--=include ../svg/ethereum-logo.svg -->
+      </div>
+    </div>
+    <div class="spacer_50"></div>
+    <div class="spin-wrapper"><button id="spin">SPIN</button></div>
+  </div>
+  <div class="container">
+    <div class="results">
+      <table>
+        <thead>
+          <tr>
+            <td>address</td>
+            <td>combination</td>
+          </tr>
+        </thead>
+      </table>
     </div>
   </div>
 </div>
 <div class="section"></div>
+<div class="outer-wrapper">
+  <div class="inner-wrapper">
+    <div class="slots">
+    </div>
+    <h3>network status:<span id="network_status"></span></h3>
+    <h3>contract status:<span id="contract_status"></span></h3>
+    <div class="field">
+      <button id="get">Get</button><input id="get_value" type="text">
+    </div>
+    <div class="field">
+      <button id="set">Set</button><input id="set_value" type="text">
+    </div>
+  </div>
+</div>
+</div>
