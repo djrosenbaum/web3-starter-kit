@@ -53,7 +53,9 @@ function copyImages() {
 
 function includes() {
 	return gulp.src('./src/index.html')
-	.pipe(include())
+	.pipe(include({
+    hardFail: true
+  }))
 	.on('error', console.log)
 	.pipe(gulp.dest('./dist'))
 }
