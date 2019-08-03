@@ -1,3 +1,6 @@
+import displayNetworkStatus from './display/network-status';
+import displayContractStatus from './display/contract-status';
+
 export default function setupDOM() {
   console.log('setup the dom!');
   displayNetworkStatus();
@@ -7,19 +10,11 @@ export default function setupDOM() {
   addListeners();
 }
 
-function displayNetworkStatus() {
-  document.getElementById('network_status').innerHTML = window.dapp.connected ? 'connected' : 'not connected';
-}
-
-function displayContractStatus() {
-  document.getElementById('contract_status').innerHTML = window.dapp.contracts.slots.isConnected ? 'connected' : 'not connected';
-
-  // Contract not deployed
-  if (!window.dapp.contracts.slots.isConnected) {
-    console.log('Contract not deployed');
-    return;
-  }
-}
+// Contract not deployed
+// if (!window.dapp.contracts.slots.isConnected) {
+//   console.log('Contract not deployed');
+//   return;
+// }
 
 async function displayCostToPlay() {
   const costToPlay = await window.dapp.contracts.slots.contract.methods.costToPlay().call();

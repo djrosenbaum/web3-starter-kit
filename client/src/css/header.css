@@ -1,0 +1,18 @@
+.header .status {
+  margin: 0 auto;
+  padding: 10px;
+  text-align: left;
+  width: 800px;
+}
+
+.header .status h3 {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 20px;
+}
+
+.header .status h3 span {
+  font-weight: 100;
+  padding-left: 10px;
+}
