@@ -41,6 +41,12 @@
   cursor: pointer;
 }
 
+.spin-wrapper button > div {
+  color: #ccc;
+  font-size: 15px;
+  font-weight: 100;
+}
+
 /* .slots .slot:nth-of-type(1) .graphic {
   animation-name: slot1;
   animation-duration: 10s;

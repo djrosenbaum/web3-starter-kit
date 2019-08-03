@@ -1,48 +1,81 @@
 export default function setupDOM() {
   console.log('setup the dom!');
-  displayMarkup();
+  displayNetworkStatus();
+  displayContractStatus();
+  displayCostToPlay();
+  displayEvents();
   addListeners();
 }
 
-function displayMarkup() {
-  console.log('markup');
+function displayNetworkStatus() {
   document.getElementById('network_status').innerHTML = window.dapp.connected ? 'connected' : 'not connected';
-  document.getElementById('contract_status').innerHTML = window.dapp.contracts.simpleStorage.isConnected ? 'connected' : 'not connected';
+}
+
+function displayContractStatus() {
+  document.getElementById('contract_status').innerHTML = window.dapp.contracts.slots.isConnected ? 'connected' : 'not connected';
 
   // Contract not deployed
-  if (!window.dapp.contracts.simpleStorage.isConnected) {
+  if (!window.dapp.contracts.slots.isConnected) {
     console.log('Contract not deployed');
     return;
   }
-  get();
 }
+
+async function displayCostToPlay() {
+  const costToPlay = await window.dapp.contracts.slots.contract.methods.costToPlay().call();
+
+  document.getElementById('costToPlay').innerHTML = `${web3.utils.fromWei(costToPlay.toString())} ETH`;
+}
+
+// const costToPlay = await window.dapp.contracts.slots.contract.methods.costToPlay().call();
 
 function addListeners() {
   console.log('add listeners');
-  document.getElementById('get').addEventListener('click', get);
-  document.getElementById('set').addEventListener('click', set);
+  document.getElementById('spin').addEventListener('click', spin);
 }
 
-async function get() {
-  const value = await window.dapp.contracts.simpleStorage.contract.methods.get().call();
-  document.getElementById('get_value').value = value;
+async function displayEvents() {
+  const pastEvents = await window.dapp.contracts.slots.contract.getPastEvents("allEvents", {
+    fromBlock: 0,
+    toBlock: 'latest',
+  });
+
+  let markup = '';
+
+  pastEvents.forEach((event) => {
+    markup += `<tr>
+      <td>${event.returnValues._player}</td>
+      <td></td>
+    </tr>`;
+  });
+
+  console.log('markup:', markup);
+
+  document.querySelector('.results tbody').innerHTML += markup;
+
+  console.log(pastEvents);
 }
 
-function set() {
-  let inputValue = document.getElementById('set_value').value;
-  inputValue = parseInt(inputValue, 10);
-  const data = window.dapp.contracts.simpleStorage.contract.methods.set(inputValue).encodeABI();
+async function spin() {
+  const affiliate = '0x727C98364025d2EE552d4ec13e53c315dFEa57b8';
+  const data = window.dapp.contracts.slots.contract.methods.spin(affiliate).encodeABI();
+  const cost = await window.dapp.contracts.slots.contract.methods.costToPlay().call();
 
-  sendTransaction(data);
+  sendTransaction({
+    cost,
+    data
+  });
 }
 
-async function sendTransaction(data) {
+async function sendTransaction(payload) {
+  const { cost, data } = payload;
+
   const BN = window.web3.utils.BN;
 
   const from = await web3.eth.getCoinbase();
-  const to = window.dapp.contracts.simpleStorage.address;
-  const value = new BN('0');
-  
+  const to = window.dapp.contracts.slots.address;
+  const value = new BN(cost);
+
   web3.eth.sendTransaction({
     from,
     to,
