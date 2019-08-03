@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ganache-cli": "^6.4.4",
+    "ganache-cli": "^6.5.1",
     "remix-ide": "^0.8.5"
   }
 }

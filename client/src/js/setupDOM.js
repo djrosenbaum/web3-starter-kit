@@ -1,11 +1,14 @@
 import displayNetworkStatus from './display/network-status';
 import displayContractStatus from './display/contract-status';
+import displaySlots from './display/slots';
+import displayEvents from './display/events';
 
 export default function setupDOM() {
   console.log('setup the dom!');
   displayNetworkStatus();
   displayContractStatus();
   displayCostToPlay();
+  displaySlots();
   displayEvents();
   addListeners();
 }
@@ -27,28 +30,6 @@ async function displayCostToPlay() {
 function addListeners() {
   console.log('add listeners');
   document.getElementById('spin').addEventListener('click', spin);
-}
-
-async function displayEvents() {
-  const pastEvents = await window.dapp.contracts.slots.contract.getPastEvents("allEvents", {
-    fromBlock: 0,
-    toBlock: 'latest',
-  });
-
-  let markup = '';
-
-  pastEvents.forEach((event) => {
-    markup += `<tr>
-      <td>${event.returnValues._player}</td>
-      <td></td>
-    </tr>`;
-  });
-
-  console.log('markup:', markup);
-
-  document.querySelector('.results tbody').innerHTML += markup;
-
-  console.log(pastEvents);
 }
 
 async function spin() {

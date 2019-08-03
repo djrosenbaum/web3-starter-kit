@@ -2,54 +2,12 @@ export default {
 	address: '0x1e2ef2137eaa2189e3a59a6b858d3427c8db2492',
 	abi: [
 		{
-			"constant": true,
-			"inputs": [],
-			"name": "ownershipCost",
-			"outputs": [
-				{
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"constant": false,
 			"inputs": [],
-			"name": "takeOwnership",
+			"name": "createAffiliate",
 			"outputs": [],
 			"payable": true,
 			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"constant": false,
-			"inputs": [
-				{
-					"name": "amount",
-					"type": "uint256"
-				}
-			],
-			"name": "withdrawAsOwner",
-			"outputs": [],
-			"payable": false,
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"constant": true,
-			"inputs": [],
-			"name": "affiliateCost",
-			"outputs": [
-				{
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
 			"type": "function"
 		},
 		{
@@ -67,20 +25,6 @@ export default {
 			"type": "function"
 		},
 		{
-			"constant": true,
-			"inputs": [],
-			"name": "owner",
-			"outputs": [
-				{
-					"name": "",
-					"type": "address"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"constant": false,
 			"inputs": [
 				{
@@ -92,34 +36,6 @@ export default {
 			"outputs": [],
 			"payable": false,
 			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"constant": true,
-			"inputs": [],
-			"name": "costToPlay",
-			"outputs": [
-				{
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"constant": true,
-			"inputs": [],
-			"name": "costToSetPlayerName",
-			"outputs": [
-				{
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
 			"type": "function"
 		},
 		{
@@ -137,28 +53,23 @@ export default {
 			"type": "function"
 		},
 		{
-			"constant": true,
+			"constant": false,
 			"inputs": [
 				{
-					"name": "playerAddress",
+					"name": "affiliateAddress",
 					"type": "address"
 				}
 			],
-			"name": "getPlayerName",
-			"outputs": [
-				{
-					"name": "playerName",
-					"type": "bytes32"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
+			"name": "spin",
+			"outputs": [],
+			"payable": true,
+			"stateMutability": "payable",
 			"type": "function"
 		},
 		{
 			"constant": false,
 			"inputs": [],
-			"name": "createAffiliate",
+			"name": "takeOwnership",
 			"outputs": [],
 			"payable": true,
 			"stateMutability": "payable",
@@ -182,14 +93,14 @@ export default {
 			"constant": false,
 			"inputs": [
 				{
-					"name": "affiliateAddress",
-					"type": "address"
+					"name": "amount",
+					"type": "uint256"
 				}
 			],
-			"name": "spin",
+			"name": "withdrawAsOwner",
 			"outputs": [],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -235,23 +146,8 @@ export default {
 				},
 				{
 					"indexed": false,
-					"name": "_amountWon",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"name": "_slot1",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"name": "_slot2",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"name": "_slot3",
-					"type": "uint256"
+					"name": "_result",
+					"type": "uint256[3]"
 				}
 			],
 			"name": "OnSpin",
@@ -273,6 +169,95 @@ export default {
 			],
 			"name": "OnPlayerName",
 			"type": "event"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "affiliateCost",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "costToPlay",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "costToSetPlayerName",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "playerAddress",
+					"type": "address"
+				}
+			],
+			"name": "getPlayerName",
+			"outputs": [
+				{
+					"name": "playerName",
+					"type": "bytes32"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "owner",
+			"outputs": [
+				{
+					"name": "",
+					"type": "address"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "ownershipCost",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
 		}
 	]
 }

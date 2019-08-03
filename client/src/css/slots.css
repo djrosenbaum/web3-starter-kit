@@ -1,5 +1,6 @@
 .slots {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 /* 16:9 ASPECT RATIO */
@@ -7,6 +8,7 @@
 /* 16:9 = 16/9 = width / height = (9 * 200 / 16) = 112.5 */
 
 .slots .slot {
+  background-color: #383949;
   border: 1px solid #ccc;
   border-radius: 6px;
   display: inline-block;
@@ -14,6 +16,12 @@
   height: 112.5px;
   position: relative;
   width: 200px;
+}
+
+.slots .ether {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 200px 90px;
 }
 
 .slot svg {
@@ -30,18 +38,26 @@
 }
 
 .spin-wrapper button {
-  font-family: 'Roboto Slab', serif;
-  font-size: 50px;
-  background: none;
-  border: 1px solid #fff;
-  color: #fff;
-  font-weight: 100;
-  border-radius: 6px;
-  padding: 4px 50px;
+  background-color: gold;
+  border: none;
+  border-radius: 10px;
+  color: #333;
   cursor: pointer;
+  font-family: 'Roboto Slab', serif;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 4px 50px;
+  letter-spacing: 1px;
 }
 
-.spin-wrapper button > div {
+.spin-wrapper .cost {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 100;
+  padding-top: 10px;
+}
+
+.spin-wrapper button>div {
   color: #ccc;
   font-size: 15px;
   font-weight: 100;

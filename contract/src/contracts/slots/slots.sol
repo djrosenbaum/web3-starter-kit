@@ -14,10 +14,7 @@ contract Slots {
     event OnSpin(
         address indexed _player,
         bytes32 indexed _status,
-        uint256 _amountWon,
-        uint256 _slot1,
-        uint256 _slot2,
-        uint256 _slot3
+        uint256[3] _result
     );
 
     // Emit event when a new player name is created
@@ -123,14 +120,14 @@ contract Slots {
             if (slot1 == slot2 && slot2 == slot3) {
                 uint256 amount = costToPlay * 50;
                 totalWon = totalWon + amount;
-                emit OnSpin(msg.sender, 'jackpot', amount, slot1, slot2, slot3);
+                emit OnSpin(msg.sender, 'jackpot', [slot1, slot2, slot3]);
             }
             else if (slot1 == slot2 || slot1 == slot3 || slot2 == slot3) {
                 uint256 amount = costToPlay * 2;
                 totalWon = totalWon + amount;
-                emit OnSpin(msg.sender, 'win', amount, slot1, slot2, slot3);
+                emit OnSpin(msg.sender, 'win', [slot1, slot2, slot3]);
             } else {
-                emit OnSpin(msg.sender, 'lose', 0, slot1, slot2, slot3);
+                emit OnSpin(msg.sender, 'lose', [slot1, slot2, slot3]);
             }
 
             spins = spins - 1;
