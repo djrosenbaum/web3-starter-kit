@@ -6,19 +6,21 @@ import displaySlots from './display/slots';
 
 export default function setupDOM() {
   console.log('setup the dom!');
+
   displayNetworkStatus();
   displayContractStatus();
+
+  // Contract not deployed
+  if (!window.dapp.contracts.slots.isConnected) {
+    console.log('Contract not deployed');
+    return;
+  }
+
   displayCostToPlay();
   displaySlots();
   displayEvents();
   addListeners();
 }
-
-// Contract not deployed
-// if (!window.dapp.contracts.slots.isConnected) {
-//   console.log('Contract not deployed');
-//   return;
-// }
 
 function addListeners() {
   console.log('add listeners');
