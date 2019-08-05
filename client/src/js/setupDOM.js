@@ -1,7 +1,8 @@
-import displayNetworkStatus from './display/network-status';
 import displayContractStatus from './display/contract-status';
-import displaySlots from './display/slots';
+import displayCostToPlay from './display/cost-to-play';
 import displayEvents from './display/events';
+import displayNetworkStatus from './display/network-status';
+import displaySlots from './display/slots';
 
 export default function setupDOM() {
   console.log('setup the dom!');
@@ -18,14 +19,6 @@ export default function setupDOM() {
 //   console.log('Contract not deployed');
 //   return;
 // }
-
-async function displayCostToPlay() {
-  const costToPlay = await window.dapp.contracts.slots.contract.methods.costToPlay().call();
-
-  document.getElementById('costToPlay').innerHTML = `${web3.utils.fromWei(costToPlay.toString())} ETH`;
-}
-
-// const costToPlay = await window.dapp.contracts.slots.contract.methods.costToPlay().call();
 
 function addListeners() {
   console.log('add listeners');
