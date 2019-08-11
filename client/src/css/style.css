@@ -8,6 +8,13 @@ a {
   text-decoration: none;
 }
 
+button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

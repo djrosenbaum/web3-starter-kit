@@ -46,8 +46,10 @@
   font-family: 'Roboto Slab', serif;
   font-size: 24px;
   font-weight: bold;
-  padding: 4px 50px;
+  padding: 12px 50px;
   letter-spacing: 1px;
+  text-shadow: 0px 1px 0px #fff;
+  width: 70%;
 }
 
 .spin-wrapper .cost {
