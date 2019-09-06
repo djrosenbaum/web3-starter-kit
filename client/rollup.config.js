@@ -6,7 +6,8 @@ module.exports = {
   input: './src/js/main.js',
   output: {
     file: './dist/js/bundle.js',
-    format: 'iife'
+    format: 'iife',
+    globals: { ethers: 'ethers' }
   },
   plugins: [
 		resolve({
@@ -16,5 +17,6 @@ module.exports = {
 		babel({
 			exclude: 'node_modules/**' // only transpile our source code
 		})
-  ]
+  ],
+  external: ['ethers']
 };

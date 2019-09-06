@@ -24,35 +24,13 @@ function addListeners() {
 }
 
 async function get() {
-  const value = await window.dapp.contracts.simpleStorage.contract.methods.get().call();
+  const value = await window.dapp.contracts.simpleStorage.contract.get();
   document.getElementById('get_value').value = value;
 }
 
 function set() {
   let inputValue = document.getElementById('set_value').value;
   inputValue = parseInt(inputValue, 10);
-  const data = window.dapp.contracts.simpleStorage.contract.methods.set(inputValue).encodeABI();
 
-  sendTransaction(data);
-}
-
-async function sendTransaction(data) {
-  const BN = window.web3.utils.BN;
-
-  const from = await web3.eth.getCoinbase();
-  const to = window.dapp.contracts.simpleStorage.address;
-  const value = new BN('0');
-  
-  web3.eth.sendTransaction({
-    from,
-    to,
-    value,
-    data
-  }).on('transactionHash', (hash) => {
-    // console.log('transaction hash:', hash);
-  }).on('receipt', (receipt) => {
-    // console.log('transaction receipt:', hash);
-  }).on('confirmation', (nonce, receipt) => {
-    // console.log('confirmation receipt:', receipt);
-  }).on('error', console.error); // If a out of gas error, the second parameter is the receipt.;
+  window.dapp.contracts.simpleStorage.contract.set(inputValue);
 }
