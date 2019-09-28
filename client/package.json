@@ -18,19 +18,19 @@
     "ethers": "^4.0.36"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "concurrently": "^4.1.1",
-    "del": "^4.1.1",
-    "gulp": "^4.0.2",
-    "gulp-cssimport": "^7.0.0",
-    "gulp-include": "^2.4.1",
-    "gulp-minifier": "^2.0.0",
-    "http-server": "^0.11.1",
-    "regenerator-runtime": "^0.13.2",
-    "rollup": "^1.16.3",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.0.2",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "@babel/core": "7.6.2",
+    "@babel/preset-env": "7.6.2",
+    "concurrently": "4.1.2",
+    "del": "5.1.0",
+    "gulp": "4.0.2",
+    "gulp-cssimport": "7.0.0",
+    "gulp-include": "2.4.1",
+    "gulp-minifier": "2.0.0",
+    "http-server": "0.11.1",
+    "regenerator-runtime": "0.13.3",
+    "rollup": "1.21.4",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-node-resolve": "5.2.0"
   }
 }
