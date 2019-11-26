@@ -1,11 +1,14 @@
 const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
+const path = require('path');
+
+const base = path.join('projects', process.env.CLIENT);
 
 module.exports = {
-  input: './src/js/main.js',
+  input: path.resolve(base, 'src', 'js', 'main.js'),
   output: {
-    file: './dist/js/bundle.js',
+    file: path.resolve(base, 'dist', 'js', 'bundle.js'),
     format: 'iife',
     globals: { ethers: 'ethers' }
   },
