@@ -11,7 +11,7 @@ const rollupConfig = require('./rollup.config');
  * Clean dist directory.
  */
 async function clean() {
-	const dist = path.resolve('./dist');
+	const dist = path.resolve('dist');
   await del(dist);
 }
 
@@ -19,9 +19,9 @@ async function clean() {
  * Pack the CSS files.
  */
 function css() {
-  return gulp.src(path.resolve('./src/css/index.css'))
+  return gulp.src(path.resolve('src', 'css', 'index.css'))
   	.pipe(cssimport())
-    .pipe(gulp.dest(path.resolve('./dist/css')));
+    .pipe(gulp.dest(path.resolve('dist', 'css')));
 }
 
 /**
@@ -39,29 +39,29 @@ async function javascript() {
 function copyImages() {
   const files = [];
   files.push(
-    gulp.src(path.resolve('./src/images/**/*'))
-      .pipe(gulp.dest(path.resolve('./dist/images')))
+    gulp.src(path.resolve('src', 'images', '**', '*'))
+      .pipe(gulp.dest(path.resolve('dist', 'images')))
   );
 
   files.push(
-    gulp.src(path.resolve('./src/favicon.png'))
-      .pipe(gulp.dest(path.resolve('./dist')))
+    gulp.src(path.resolve('src', 'favicon.png'))
+      .pipe(gulp.dest(path.resolve('dist')))
   );
 
   return Promise.all(files);
 }
 
 function includes() {
-	return gulp.src('./src/index.html')
+	return gulp.src(path.resolve('src', 'index.html'))
 	.pipe(include({
     hardFail: true
   }))
 	.on('error', console.log)
-	.pipe(gulp.dest('./dist'))
+	.pipe(gulp.dest(path.resolve('dist')))
 }
 
 function minifyHTML() {
-  return gulp.src('./dist/index.html').pipe(minifier({
+  return gulp.src(path.resolve('dist', 'index.html')).pipe(minifier({
     minify: true,
     minifyHTML: {
       collapseWhitespace: true,
@@ -69,11 +69,11 @@ function minifyHTML() {
       minifyCSS: true,
       minifyJS: true
     }
-  })).pipe(gulp.dest('./dist'));
+  })).pipe(gulp.dest(path.resolve('dist')));
 }
 
 async function watch() {
-  return gulp.watch(['./src'],
+  return gulp.watch([path.resolve('src')],
     {
       ignoreInitial: false
     },
