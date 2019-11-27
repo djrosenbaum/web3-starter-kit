@@ -50,11 +50,6 @@ function copyImages() {
       .pipe(gulp.dest(path.resolve(base, 'dist', 'images')))
   );
 
-  files.push(
-    gulp.src(path.resolve(base, 'src', 'favicon.png'))
-      .pipe(gulp.dest(path.resolve(base, 'dist')))
-  );
-
   return Promise.all(files);
 }
 
