@@ -25,7 +25,7 @@
     "gulp-cssimport": "7.0.0",
     "gulp-include": "2.4.1",
     "gulp-minifier": "3.4.0",
-    "http-server": "0.11.1",
+    "http-server": "0.11.2",
     "regenerator-runtime": "0.13.3",
     "rollup": "1.27.5",
     "rollup-plugin-babel": "4.3.3",
